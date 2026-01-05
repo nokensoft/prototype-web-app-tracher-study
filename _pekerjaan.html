@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Pekerjaan Setelah Lulus - Tracer Study Alumni Universitas</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="h-full bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-950 text-white min-h-screen flex flex-col">
+    <!-- Header Atas -->
+    <header class="bg-black/30 backdrop-blur-md shadow-lg">
+        <div class="px-6 py-4 flex items-center justify-between">
+            <!-- Logo & Judul -->
+            <div class="flex items-center space-x-4">
+                <i class="fas fa-graduation-cap text-4xl text-indigo-300"></i>
+                <span class="text-2xl font-bold">Tracer Study Alumni</span>
+            </div>
+
+            <!-- Jam + Profil -->
+            <div class="flex items-center space-x-8">
+                <div x-data="clock()" x-init="init()" class="text-right hidden md:block">
+                    <div class="text-2xl font-bold" x-text="time"></div>
+                    <div class="text-sm opacity-80" x-text="date"></div>
+                </div>
+
+                <div x-data="{ open: false }" class="relative">
+                    <button @click="open = !open" class="flex items-center space-x-3 focus:outline-none">
+                        <img src="https://media.istockphoto.com/id/1398385367/photo/happy-millennial-business-woman-in-glasses-posing-with-hands-folded.jpg?s=612x612&w=0&k=20&c=Wd2vTDd6tJ5SeEY-aw0WL0bew8TAkyUGVvNQRj3oJFw=" alt="Foto Profil" class="w-12 h-12 rounded-full object-cover border-2 border-indigo-300">
+                        <span class="hidden md:block font-medium">Siti Nurhaliza</span>
+                        <i class="fas fa-chevron-down text-sm"></i>
+                    </button>
+
+                    <div x-show="open" @click.away="open = false"
+                         x-transition
+                         class="absolute right-0 mt-4 w-48 bg-black/50 backdrop-blur-md border border-white/20 rounded-xl shadow-2xl py-2 z-50">
+                        <a href="#" class="block px-4 py-3 hover:bg-white/10 transition">Profil Saya</a>
+                        <hr class="border-white/20">
+                        <a href="index.html" class="block px-4 py-3 text-red-400 hover:bg-white/10 transition">Keluar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+        <!-- Sidebar Navigasi Kiri (Riwayat Pekerjaan aktif) -->
+        <aside class="w-64 bg-black/40 backdrop-blur-md shadow-xl overflow-y-auto">
+            <nav class="mt-8 px-6">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="_dasbor.html" class="flex items-center space-x-4 px-4 py-3 hover:bg-white/10 rounded-lg transition">
+                            <i class="fas fa-tachometer-alt text-xl w-6 text-center"></i>
+                            <span>Dasbor</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="_akun_saya.html" class="flex items-center space-x-4 px-4 py-3 hover:bg-white/10 rounded-lg transition">
+                            <i class="fas fa-user-cog text-xl w-6 text-center"></i>
+                            <span>Akun Saya</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="_biodata.html" class="flex items-center space-x-4 px-4 py-3 hover:bg-white/10 rounded-lg transition">
+                            <i class="fas fa-id-card text-xl w-6 text-center"></i>
+                            <span>Biodata</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="_program_studi.html" class="flex items-center space-x-4 px-4 py-3 hover:bg-white/10 rounded-lg transition">
+                            <i class="fas fa-graduation-cap text-xl w-6 text-center"></i>
+                            <span>Program Studi & Jurusan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="_pekerjaan.html" class="flex items-center space-x-4 px-4 py-3 bg-white/10 rounded-lg">
+                            <i class="fas fa-briefcase text-xl w-6 text-center"></i>
+                            <span class="font-medium">Riwayat Pekerjaan Setelah Lulus</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Konten Utama: Riwayat Pekerjaan -->
+        <main class="flex-1 p-8 overflow-y-auto">
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-4xl font-bold">Riwayat Pekerjaan Setelah Lulus</h1>
+                <button class="px-6 py-3 bg-green-600 hover:bg-green-700 rounded-lg font-semibold shadow-md transition transform hover:scale-105">
+                    <i class="fas fa-plus mr-2"></i> Tambah Riwayat Baru
+                </button>
+            </div>
+
+            <!-- Daftar Riwayat Pekerjaan (dengan Alpine.js untuk demo interaktif) -->
+            <div x-data="{ pekerjaan: [
+                { id: 1, perusahaan: 'PT. Teknologi Maju Indonesia', jabatan: 'Software Engineer', periode: 'Januari 2023 - Sekarang', deskripsi: 'Mengembangkan aplikasi web dan mobile untuk klien perusahaan.' },
+                { id: 2, perusahaan: 'Startup Digital XYZ', jabatan: 'Junior Developer', periode: 'Juni 2022 - Desember 2022', deskripsi: 'Magang di tim backend, fokus pada API dan database.' }
+            ] }" class="space-y-6">
+                <template x-for="job in pekerjaan" :key="job.id">
+                    <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-xl">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold" x-text="job.perusahaan"></h3>
+                                <p class="text-lg opacity-90 mt-1" x-text="job.jabatan"></p>
+                                <p class="text-sm opacity-80 mt-1" x-text="job.periode"></p>
+                                <p class="mt-4 opacity-90" x-text="job.deskripsi"></p>
+                            </div>
+                            <div class="flex space-x-3">
+                                <button @click="alert('Ubah riwayat ID: ' + job.id)" class="p-2 bg-blue-600 hover:bg-blue-700 rounded-full transition">
+                                    <i class="fas fa-edit text-white"></i>
+                                </button>
+                                <button @click="alert('Hapus riwayat ID: ' + job.id)" class="p-2 bg-red-600 hover:bg-red-700 rounded-full transition">
+                                    <i class="fas fa-trash text-white"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Jika tidak ada data -->
+                <template x-if="pekerjaan.length === 0">
+                    <div class="text-center py-12 opacity-80">
+                        <i class="fas fa-briefcase text-6xl mb-4"></i>
+                        <p class="text-lg">Belum ada riwayat pekerjaan. Tambahkan sekarang!</p>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Modal Tambah/Ubah (demo sederhana dengan Alpine.js) -->
+            <div x-data="{ showModal: false }" class="fixed inset-0 flex items-center justify-center z-50" x-show="showModal" @click.away="showModal = false">
+                <div class="bg-black/50 backdrop-blur-md border border-white/20 rounded-2xl p-8 w-full max-w-lg shadow-2xl">
+                    <h3 class="text-2xl font-bold mb-6">Tambah/Ubah Riwayat Pekerjaan</h3>
+                    <!-- Form Modal -->
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium opacity-80 mb-2">Perusahaan</label>
+                            <input type="text" class="w-full px-4 py-3 bg-white/5 border border-white/30 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium opacity-80 mb-2">Jabatan</label>
+                            <input type="text" class="w-full px-4 py-3 bg-white/5 border border-white/30 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium opacity-80 mb-2">Periode (mulai - selesai)</label>
+                            <input type="text" class="w-full px-4 py-3 bg-white/5 border border-white/30 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium opacity-80 mb-2">Deskripsi</label>
+                            <textarea rows="4" class="w-full px-4 py-3 bg-white/5 border border-white/30 rounded-lg"></textarea>
+                        </div>
+                        <div class="flex justify-end space-x-4">
+                            <button type="button" @click="showModal = false" class="px-6 py-3 bg-gray-600 hover:bg-gray-700 rounded-lg">Batal</button>
+                            <button type="submit" class="px-6 py-3 bg-green-600 hover:bg-green-700 rounded-lg">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black/30 backdrop-blur-md py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-sm">&copy; 2026 Universitas [Nama Universitas]. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Script Alpine.js untuk Realtime Clock -->
+    <script>
+        function clock() {
+            return {
+                time: '',
+                date: '',
+                init() {
+                    this.update();
+                    setInterval(() => this.update(), 1000);
+                },
+                update() {
+                    const now = new Date();
+                    const optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                    this.date = now.toLocaleDateString('id-ID', optionsDate);
+                    this.time = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                }
+            }
+        }
+    </script>
+</body>
+</html>

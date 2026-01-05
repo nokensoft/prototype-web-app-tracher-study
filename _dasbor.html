@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dasbor - Tracer Study Alumni Universitas</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="h-full bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-950 text-white min-h-screen flex flex-col">
+    <!-- Header Atas - Full justify-between dengan padding nol pada container bagian dalam -->
+    <header class="bg-black/30 backdrop-blur-md shadow-lg">
+        <div class="px-6 py-4 flex items-center justify-between">
+            <!-- Logo & Judul rapat ke kiri paling pinggir -->
+            <div class="flex items-center space-x-4">
+                <i class="fas fa-graduation-cap text-4xl text-indigo-300"></i>
+                <span class="text-2xl font-bold">Tracer Study Alumni</span>
+            </div>
+
+            <!-- Konten kanan: Jam + Profil rapat ke kanan paling pinggir -->
+            <div class="flex items-center space-x-8">
+                <!-- Realtime Clock (desktop only) -->
+                <div x-data="clock()" x-init="init()" class="text-right hidden md:block">
+                    <div class="text-2xl font-bold" x-text="time"></div>
+                    <div class="text-sm opacity-80" x-text="date"></div>
+                </div>
+
+                <!-- Profil & Dropdown -->
+                <div x-data="{ open: false }" class="relative">
+                    <button @click="open = !open" class="flex items-center space-x-3 focus:outline-none">
+                        <img src="https://media.istockphoto.com/id/1398385367/photo/happy-millennial-business-woman-in-glasses-posing-with-hands-folded.jpg?s=612x612&w=0&k=20&c=Wd2vTDd6tJ5SeEY-aw0WL0bew8TAkyUGVvNQRj3oJFw=" alt="Foto Profil" class="w-12 h-12 rounded-full object-cover border-2 border-indigo-300">
+                        <span class="hidden md:block font-medium">Siti Nurhaliza</span>
+                        <i class="fas fa-chevron-down text-sm"></i>
+                    </button>
+
+                    <div x-show="open" @click.away="open = false"
+                         x-transition
+                         class="absolute right-0 mt-4 w-48 bg-black/50 backdrop-blur-md border border-white/20 rounded-xl shadow-2xl py-2 z-50">
+                        <a href="#" class="block px-4 py-3 hover:bg-white/10 transition">Profil Saya</a>
+                        <hr class="border-white/20">
+                        <a href="index.html" class="block px-4 py-3 text-red-400 hover:bg-white/10 transition">Keluar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+        <!-- Sidebar Navigasi Kiri -->
+        <aside class="w-64 bg-black/40 backdrop-blur-md shadow-xl overflow-y-auto">
+            <nav class="mt-8 px-6">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="_dasbor.html" class="flex items-center space-x-4 px-4 py-3 bg-white/10 rounded-lg">
+                            <i class="fas fa-tachometer-alt text-xl w-6 text-center"></i>
+                            <span class="font-medium">Dasbor</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="_akun_saya.html" class="flex items-center space-x-4 px-4 py-3 hover:bg-white/10 rounded-lg transition">
+                            <i class="fas fa-user-cog text-xl w-6 text-center"></i>
+                            <span>Akun Saya</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="_biodata.html" class="flex items-center space-x-4 px-4 py-3 hover:bg-white/10 rounded-lg transition">
+                            <i class="fas fa-id-card text-xl w-6 text-center"></i>
+                            <span>Biodata</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="_program_studi.html" class="flex items-center space-x-4 px-4 py-3 hover:bg-white/10 rounded-lg transition">
+                            <i class="fas fa-graduation-cap text-xl w-6 text-center"></i>
+                            <span>Program Studi & Jurusan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="_pekerjaan.html" class="flex items-center space-x-4 px-4 py-3 hover:bg-white/10 rounded-lg transition">
+                            <i class="fas fa-briefcase text-xl w-6 text-center"></i>
+                            <span>Riwayat Pekerjaan Setelah Lulus</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Konten Utama Dasbor -->
+        <main class="flex-1 p-8 overflow-y-auto">
+            <h1 class="text-4xl font-bold mb-8">Selamat Datang Kembali, Siti Nurhaliza!</h1>
+
+            <!-- Grid Card Statistik -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-xl">
+                    <h3 class="text-lg font-medium mb-2">Status Tracer Study</h3>
+                    <p class="text-3xl font-bold text-green-400">Sudah Diisi</p>
+                    <p class="text-sm mt-2 opacity-80">Terima kasih telah mengisi kuesioner tahun 2025</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-xl">
+                    <h3 class="text-lg font-medium mb-2">Tahun Lulus</h3>
+                    <p class="text-3xl font-bold">2022</p>
+                    <p class="text-sm mt-2 opacity-80">Sarjana Teknik Informatika</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-xl">
+                    <h3 class="text-lg font-medium mb-2">Pekerjaan Saat Ini</h3>
+                    <p class="text-3xl font-bold">Software Engineer</p>
+                    <p class="text-sm mt-2 opacity-80">PT. Teknologi Maju Indonesia</p>
+                </div>
+            </div>
+
+            <!-- Informasi Tambahan -->
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 shadow-xl">
+                <h2 class="text-2xl font-bold mb-6">Ringkasan Data Anda</h2>
+                <ul class="space-y-4 text-lg">
+                    <li><strong>Email:</strong> siti.nurhaliza@example.com</li>
+                    <li><strong>No. HP:</strong> 0812-3456-7890</li>
+                    <li><strong>Waktu Mendapat Kerja Pertama:</strong> 3 bulan setelah lulus</li>
+                    <li><strong>Gaji Pertama:</strong> Rp 8.500.000 / bulan</li>
+                    <li><strong>Kesesuaian Pekerjaan dengan Jurusan:</strong> Sangat Sesuai</li>
+                </ul>
+                <p class="mt-8 text-sm opacity-80">
+                    Data Anda membantu universitas meningkatkan kualitas pendidikan. Terima kasih atas kontribusinya!
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black/30 backdrop-blur-md py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-sm">&copy; 2026 Universitas [Nama Universitas]. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Script Alpine.js untuk Realtime Clock -->
+    <script>
+        function clock() {
+            return {
+                time: '',
+                date: '',
+                init() {
+                    this.update();
+                    setInterval(() => this.update(), 1000);
+                },
+                update() {
+                    const now = new Date();
+                    const optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                    this.date = now.toLocaleDateString('id-ID', optionsDate);
+                    this.time = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                }
+            }
+        }
+    </script>
+</body>
+</html>
