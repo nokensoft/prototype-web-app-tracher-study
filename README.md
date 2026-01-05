@@ -10,3 +10,8 @@ https://github.com/nokensoft/prototype-web-app-tracher-study
 ## Demo on GitHub Pages
 
 https://nokensoft.github.io/prototype-web-app-tracher-study/
+
+## Screenshots
+
+<strong>Akun Saya</strong> <br><br>
+<img src="./nokensoft-prototype-web-app-tracher-study-university.png" width="1080px">
